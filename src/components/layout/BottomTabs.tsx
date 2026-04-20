@@ -19,7 +19,7 @@ export function BottomTabs() {
     >
       <ul className="mx-auto grid max-w-2xl grid-cols-5">
         {tabs.map(({ to, label, icon: Icon, exact }) => {
-          const active = exact ? pathname === to : pathname.startsWith(to) && to !== "/";
+          const active = exact ? pathname === to : pathname.startsWith(to);
           return (
             <li key={to}>
               <Link
