@@ -156,7 +156,7 @@ function HomePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         onSubmit={onSubmit}
-        className="-mt-12 mx-4 rounded-3xl bg-card shadow-card p-5 space-y-3"
+        className="relative z-10 -mt-6 mx-4 rounded-3xl bg-card shadow-card p-5 space-y-3"
       >
         <Row icon={<MapPin className="h-5 w-5" />} label="Destination">
           <input
