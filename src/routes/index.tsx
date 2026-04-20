@@ -281,15 +281,15 @@ function HomePage() {
 
 function Row({ icon, label, children }: { icon: React.ReactNode; label: string; children: React.ReactNode }) {
   return (
-    <label className="flex items-center gap-3 rounded-2xl bg-secondary/50 border border-border px-4 py-2.5 focus-within:ring-2 focus-within:ring-ring transition">
-      <span className="text-primary" aria-hidden>
+    <label className="flex items-center gap-3 rounded-2xl bg-secondary/50 border border-border px-4 py-3 min-h-[60px] focus-within:ring-2 focus-within:ring-ring transition">
+      <span className="text-primary shrink-0" aria-hidden>
         {icon}
       </span>
-      <div className="flex-1 min-w-0">
-        <span className="block text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+      <div className="flex-1 min-w-0 flex flex-col justify-center gap-0.5">
+        <span className="block text-[10px] uppercase tracking-wider text-muted-foreground font-semibold leading-none">
           {label}
         </span>
-        {children}
+        <div className="text-foreground">{children}</div>
       </div>
     </label>
   );
