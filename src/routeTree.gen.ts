@@ -9,38 +9,160 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PlanRouteImport } from './routes/plan'
+import { Route as MapRouteImport } from './routes/map'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TripsIndexRouteImport } from './routes/trips.index'
+import { Route as TripsTripIdRouteImport } from './routes/trips.$tripId'
+import { Route as TripsTripIdMapRouteImport } from './routes/trips.$tripId.map'
 
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanRoute = PlanRouteImport.update({
+  id: '/plan',
+  path: '/plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TripsIndexRoute = TripsIndexRouteImport.update({
+  id: '/trips/',
+  path: '/trips/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TripsTripIdRoute = TripsTripIdRouteImport.update({
+  id: '/trips/$tripId',
+  path: '/trips/$tripId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TripsTripIdMapRoute = TripsTripIdMapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => TripsTripIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/map': typeof MapRoute
+  '/plan': typeof PlanRoute
+  '/profile': typeof ProfileRoute
+  '/trips/$tripId': typeof TripsTripIdRouteWithChildren
+  '/trips/': typeof TripsIndexRoute
+  '/trips/$tripId/map': typeof TripsTripIdMapRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/map': typeof MapRoute
+  '/plan': typeof PlanRoute
+  '/profile': typeof ProfileRoute
+  '/trips/$tripId': typeof TripsTripIdRouteWithChildren
+  '/trips': typeof TripsIndexRoute
+  '/trips/$tripId/map': typeof TripsTripIdMapRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/map': typeof MapRoute
+  '/plan': typeof PlanRoute
+  '/profile': typeof ProfileRoute
+  '/trips/$tripId': typeof TripsTripIdRouteWithChildren
+  '/trips/': typeof TripsIndexRoute
+  '/trips/$tripId/map': typeof TripsTripIdMapRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/map'
+    | '/plan'
+    | '/profile'
+    | '/trips/$tripId'
+    | '/trips/'
+    | '/trips/$tripId/map'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/map'
+    | '/plan'
+    | '/profile'
+    | '/trips/$tripId'
+    | '/trips'
+    | '/trips/$tripId/map'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/map'
+    | '/plan'
+    | '/profile'
+    | '/trips/$tripId'
+    | '/trips/'
+    | '/trips/$tripId/map'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  MapRoute: typeof MapRoute
+  PlanRoute: typeof PlanRoute
+  ProfileRoute: typeof ProfileRoute
+  TripsTripIdRoute: typeof TripsTripIdRouteWithChildren
+  TripsIndexRoute: typeof TripsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plan': {
+      id: '/plan'
+      path: '/plan'
+      fullPath: '/plan'
+      preLoaderRoute: typeof PlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,21 +170,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trips/': {
+      id: '/trips/'
+      path: '/trips'
+      fullPath: '/trips/'
+      preLoaderRoute: typeof TripsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trips/$tripId': {
+      id: '/trips/$tripId'
+      path: '/trips/$tripId'
+      fullPath: '/trips/$tripId'
+      preLoaderRoute: typeof TripsTripIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trips/$tripId/map': {
+      id: '/trips/$tripId/map'
+      path: '/map'
+      fullPath: '/trips/$tripId/map'
+      preLoaderRoute: typeof TripsTripIdMapRouteImport
+      parentRoute: typeof TripsTripIdRoute
+    }
   }
 }
 
+interface TripsTripIdRouteChildren {
+  TripsTripIdMapRoute: typeof TripsTripIdMapRoute
+}
+
+const TripsTripIdRouteChildren: TripsTripIdRouteChildren = {
+  TripsTripIdMapRoute: TripsTripIdMapRoute,
+}
+
+const TripsTripIdRouteWithChildren = TripsTripIdRoute._addFileChildren(
+  TripsTripIdRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  MapRoute: MapRoute,
+  PlanRoute: PlanRoute,
+  ProfileRoute: ProfileRoute,
+  TripsTripIdRoute: TripsTripIdRouteWithChildren,
+  TripsIndexRoute: TripsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}
