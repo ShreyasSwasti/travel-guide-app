@@ -15,6 +15,8 @@ import { Route as MapRouteImport } from './routes/map'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TripsIndexRouteImport } from './routes/trips.index'
+import { Route as TripsTripIdRouteImport } from './routes/trips.$tripId'
+import { Route as TripsTripIdMapRouteImport } from './routes/trips.$tripId.map'
 
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
@@ -46,6 +48,16 @@ const TripsIndexRoute = TripsIndexRouteImport.update({
   path: '/trips/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TripsTripIdRoute = TripsTripIdRouteImport.update({
+  id: '/trips/$tripId',
+  path: '/trips/$tripId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TripsTripIdMapRoute = TripsTripIdMapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => TripsTripIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,7 +65,9 @@ export interface FileRoutesByFullPath {
   '/map': typeof MapRoute
   '/plan': typeof PlanRoute
   '/profile': typeof ProfileRoute
+  '/trips/$tripId': typeof TripsTripIdRouteWithChildren
   '/trips/': typeof TripsIndexRoute
+  '/trips/$tripId/map': typeof TripsTripIdMapRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +75,9 @@ export interface FileRoutesByTo {
   '/map': typeof MapRoute
   '/plan': typeof PlanRoute
   '/profile': typeof ProfileRoute
+  '/trips/$tripId': typeof TripsTripIdRouteWithChildren
   '/trips': typeof TripsIndexRoute
+  '/trips/$tripId/map': typeof TripsTripIdMapRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,14 +86,41 @@ export interface FileRoutesById {
   '/map': typeof MapRoute
   '/plan': typeof PlanRoute
   '/profile': typeof ProfileRoute
+  '/trips/$tripId': typeof TripsTripIdRouteWithChildren
   '/trips/': typeof TripsIndexRoute
+  '/trips/$tripId/map': typeof TripsTripIdMapRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/map' | '/plan' | '/profile' | '/trips/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/map'
+    | '/plan'
+    | '/profile'
+    | '/trips/$tripId'
+    | '/trips/'
+    | '/trips/$tripId/map'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/map' | '/plan' | '/profile' | '/trips'
-  id: '__root__' | '/' | '/auth' | '/map' | '/plan' | '/profile' | '/trips/'
+  to:
+    | '/'
+    | '/auth'
+    | '/map'
+    | '/plan'
+    | '/profile'
+    | '/trips/$tripId'
+    | '/trips'
+    | '/trips/$tripId/map'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/map'
+    | '/plan'
+    | '/profile'
+    | '/trips/$tripId'
+    | '/trips/'
+    | '/trips/$tripId/map'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -86,6 +129,7 @@ export interface RootRouteChildren {
   MapRoute: typeof MapRoute
   PlanRoute: typeof PlanRoute
   ProfileRoute: typeof ProfileRoute
+  TripsTripIdRoute: typeof TripsTripIdRouteWithChildren
   TripsIndexRoute: typeof TripsIndexRoute
 }
 
@@ -133,8 +177,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TripsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trips/$tripId': {
+      id: '/trips/$tripId'
+      path: '/trips/$tripId'
+      fullPath: '/trips/$tripId'
+      preLoaderRoute: typeof TripsTripIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trips/$tripId/map': {
+      id: '/trips/$tripId/map'
+      path: '/map'
+      fullPath: '/trips/$tripId/map'
+      preLoaderRoute: typeof TripsTripIdMapRouteImport
+      parentRoute: typeof TripsTripIdRoute
+    }
   }
 }
+
+interface TripsTripIdRouteChildren {
+  TripsTripIdMapRoute: typeof TripsTripIdMapRoute
+}
+
+const TripsTripIdRouteChildren: TripsTripIdRouteChildren = {
+  TripsTripIdMapRoute: TripsTripIdMapRoute,
+}
+
+const TripsTripIdRouteWithChildren = TripsTripIdRoute._addFileChildren(
+  TripsTripIdRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -142,6 +212,7 @@ const rootRouteChildren: RootRouteChildren = {
   MapRoute: MapRoute,
   PlanRoute: PlanRoute,
   ProfileRoute: ProfileRoute,
+  TripsTripIdRoute: TripsTripIdRouteWithChildren,
   TripsIndexRoute: TripsIndexRoute,
 }
 export const routeTree = rootRouteImport
