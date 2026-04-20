@@ -54,7 +54,7 @@ function ProfilePage() {
       .then(({ data }) => {
         if (data) {
           setName(data.name || "");
-          setPrefs({ ...prefs, ...(data.preferences as Prefs) });
+          setPrefs({ ...prefs, ...(data.preferences as unknown as Prefs) });
         }
       });
     setHasToken(!!getMapboxToken());
@@ -69,7 +69,7 @@ function ProfilePage() {
     if (!user) return;
     const { error } = await supabase
       .from("profiles")
-      .update({ name, preferences: prefs })
+      .update({ name, preferences: prefs as unknown as Record<string, unknown> })
       .eq("id", user.id);
     if (error) return toast.error(error.message);
     toast.success("Profile saved");
