@@ -69,7 +69,8 @@ function ProfilePage() {
     if (!user) return;
     const { error } = await supabase
       .from("profiles")
-      .update({ name, preferences: prefs as unknown as Record<string, unknown> })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .update({ name, preferences: prefs as any })
       .eq("id", user.id);
     if (error) return toast.error(error.message);
     toast.success("Profile saved");
