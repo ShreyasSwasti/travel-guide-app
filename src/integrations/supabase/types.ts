@@ -14,7 +14,163 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      activities: {
+        Row: {
+          address: string | null
+          booking_url: string | null
+          cost: number
+          created_at: string
+          day_number: number
+          id: string
+          image_url: string | null
+          lat: number | null
+          lng: number | null
+          name: string
+          notes: string | null
+          rating: number | null
+          sort_order: number
+          start_time: string | null
+          trip_id: string
+          type: Database["public"]["Enums"]["activity_type"]
+        }
+        Insert: {
+          address?: string | null
+          booking_url?: string | null
+          cost?: number
+          created_at?: string
+          day_number?: number
+          id?: string
+          image_url?: string | null
+          lat?: number | null
+          lng?: number | null
+          name: string
+          notes?: string | null
+          rating?: number | null
+          sort_order?: number
+          start_time?: string | null
+          trip_id: string
+          type?: Database["public"]["Enums"]["activity_type"]
+        }
+        Update: {
+          address?: string | null
+          booking_url?: string | null
+          cost?: number
+          created_at?: string
+          day_number?: number
+          id?: string
+          image_url?: string | null
+          lat?: number | null
+          lng?: number | null
+          name?: string
+          notes?: string | null
+          rating?: number | null
+          sort_order?: number
+          start_time?: string | null
+          trip_id?: string
+          type?: Database["public"]["Enums"]["activity_type"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activities_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      favorites: {
+        Row: {
+          activity_id: string
+          created_at: string
+          user_id: string
+        }
+        Insert: {
+          activity_id: string
+          created_at?: string
+          user_id: string
+        }
+        Update: {
+          activity_id?: string
+          created_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favorites_activity_id_fkey"
+            columns: ["activity_id"]
+            isOneToOne: false
+            referencedRelation: "activities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          name: string | null
+          preferences: Json
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          name?: string | null
+          preferences?: Json
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string | null
+          preferences?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      trips: {
+        Row: {
+          budget_total: number
+          cover_image: string | null
+          created_at: string
+          destination: string
+          end_date: string | null
+          group_size: number
+          id: string
+          start_date: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          budget_total?: number
+          cover_image?: string | null
+          created_at?: string
+          destination: string
+          end_date?: string | null
+          group_size?: number
+          id?: string
+          start_date?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          budget_total?: number
+          cover_image?: string | null
+          created_at?: string
+          destination?: string
+          end_date?: string | null
+          group_size?: number
+          id?: string
+          start_date?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +179,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      activity_type: "eat" | "see" | "do" | "stay"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +306,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      activity_type: ["eat", "see", "do", "stay"],
+    },
   },
 } as const
