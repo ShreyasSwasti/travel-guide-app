@@ -342,11 +342,11 @@ function BookingChip({ href, icon, label }: { href: string; icon: React.ReactNod
   );
 }
 
-const TYPE_META: Record<ActivityType, { color: string; bg: string; icon: React.ReactNode; label: string }> = {
-  eat:  { color: "text-eat",  bg: "bg-[var(--eat)]/10",  icon: <UtensilsCrossed className="h-4 w-4" />, label: "Eat" },
-  see:  { color: "text-see",  bg: "bg-[var(--see)]/10",  icon: <Camera className="h-4 w-4" />, label: "See" },
-  do:   { color: "text-do",   bg: "bg-[var(--do)]/10",   icon: <Mountain className="h-4 w-4" />, label: "Do" },
-  stay: { color: "text-stay", bg: "bg-[var(--stay)]/10", icon: <Hotel className="h-4 w-4" />, label: "Stay" },
+const TYPE_META: Record<ActivityType, { color: string; bg: string; accent: string; icon: React.ReactNode; label: string }> = {
+  eat:  { color: "text-eat",  bg: "bg-[var(--eat)]/10",  accent: "bg-[var(--eat)]",  icon: <UtensilsCrossed className="h-4 w-4" />, label: "Eat" },
+  see:  { color: "text-see",  bg: "bg-[var(--see)]/10",  accent: "bg-[var(--see)]",  icon: <Camera className="h-4 w-4" />, label: "See" },
+  do:   { color: "text-do",   bg: "bg-[var(--do)]/10",   accent: "bg-[var(--do)]",   icon: <Mountain className="h-4 w-4" />, label: "Do" },
+  stay: { color: "text-stay", bg: "bg-[var(--stay)]/10", accent: "bg-[var(--stay)]", icon: <Hotel className="h-4 w-4" />, label: "Stay" },
 };
 
 function ActivityRow({
@@ -361,24 +361,37 @@ function ActivityRow({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, x: -20 }}
-      className="rounded-2xl bg-card shadow-card p-3 flex items-start gap-3"
+      whileHover={{ y: -2 }}
+      transition={{ type: "spring", stiffness: 400, damping: 28 }}
+      className="relative overflow-hidden rounded-[16px] bg-card shadow-card hover:shadow-lg transition-shadow p-4 pl-5 flex items-start gap-3"
     >
+      {/* Left colored border accent */}
+      <span className={cn("absolute left-0 top-0 bottom-0 w-1.5", meta.accent)} aria-hidden />
+
       <div className={cn("h-10 w-10 rounded-xl inline-flex items-center justify-center shrink-0", meta.bg, meta.color)}>
         {meta.icon}
       </div>
       <button onClick={onEdit} className="flex-1 min-w-0 text-left">
-        <div className="flex items-center gap-2">
-          <span className={cn("text-[10px] uppercase font-bold tracking-wider", meta.color)}>{meta.label}</span>
+        <div className="text-[15px] font-medium leading-snug truncate text-foreground">
+          {activity.name}
+        </div>
+        <div className="mt-1 flex items-center gap-1.5 text-[12px] text-muted-foreground">
+          <span className={cn("font-semibold uppercase tracking-wide", meta.color)}>{meta.label}</span>
           {activity.start_time && (
-            <span className="text-[10px] text-muted-foreground">{activity.start_time}</span>
+            <>
+              <span aria-hidden>·</span>
+              <span>{activity.start_time}</span>
+            </>
+          )}
+          {activity.address && (
+            <>
+              <span aria-hidden>·</span>
+              <span className="truncate">{activity.address}</span>
+            </>
           )}
         </div>
-        <div className="font-semibold truncate">{activity.name}</div>
-        {activity.address && (
-          <div className="text-xs text-muted-foreground truncate">{activity.address}</div>
-        )}
         {activity.notes && (
-          <div className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{activity.notes}</div>
+          <div className="text-[12px] text-muted-foreground mt-1 line-clamp-2">{activity.notes}</div>
         )}
       </button>
       <div className="flex flex-col items-end gap-1 shrink-0">
