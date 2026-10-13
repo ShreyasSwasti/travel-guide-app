@@ -173,7 +173,7 @@ Possible future enhancements include:
 **Development Platform:** Lovable
 
 **Live Demo:** https://itinerary-master-app.lovable.app
-
+it is ai made but took lot of work
 ---
 
 ## 📄 License
