@@ -1,180 +1,137 @@
-# ✈️ TravelEase — AI Travel Planner
+# ✈️ TravelEase – AI Travel Planner
 
-**TravelEase** is an AI-powered travel planning web application designed to make trip planning simple, fast, and personalized.
+TravelEase is a web-based travel planning application that helps users plan their trips in a simple and organized way.
 
-Instead of manually searching for destinations, activities, budgets, and schedules, users can enter their travel requirements and generate a complete itinerary in seconds.
+Users can enter their travel destination, dates, number of travellers, and budget to generate a personalized travel itinerary. It also provides options to explore destinations, view maps, and manage saved trips.
 
-🌐 **Live Demo:** https://itinerary-master-app.lovable.app
-
----
-
-## 📌 Overview
-
-TravelEase helps users plan their trips by collecting a few basic details:
-
-* 📍 Destination
-* 📅 Start and end dates
-* 👥 Number of travellers
-* 💰 Travel budget
-
-Based on these inputs, the application generates an AI-powered travel itinerary that helps users organize their trip efficiently.
-
-The application also provides dedicated sections for managing saved trips, viewing maps, and customizing profile preferences.
+🌐 **Live Demo:** [TravelEase](https://itinerary-master-app.lovable.app)
 
 ---
 
 ## ✨ Features
 
-### 🤖 AI-Powered Itinerary Generation
-
-Users can provide their destination, travel dates, number of travellers, and budget to generate a personalized itinerary.
-
-### 🗓️ Trip Planning
-
-Create and organize complete trips based on:
-
-* Destination
-* Travel duration
-* Number of travellers
-* Budget
-
-### 🧳 My Trips
-
-Users can access and manage their saved itineraries from the **My Trips** section.
-
-### 🗺️ Map
-
-A dedicated map section helps users explore and visualize travel destinations and places related to their trip.
-
-### 👤 User Profile
-
-Users can manage their profile and travel preferences from the Profile section.
-
-### 🔐 Authentication
-
-The application provides a sign-in experience so users can access their personalized travel information.
-
-### 📱 Responsive Design
-
-The application is designed to provide a user-friendly experience across different screen sizes and devices.
+- **AI-Powered Trip Planning** – Generate personalized travel itineraries based on your requirements.
+- **Destination Selection** – Choose where you want to travel.
+- **Date & Duration Planning** – Select your starting and ending travel dates.
+- **Budget Management** – Plan trips according to your estimated budget.
+- **Traveller Details** – Specify the number of people travelling.
+- **My Trips** – View and manage your saved travel plans.
+- **Interactive Map** – Explore destinations and locations related to your trips.
+- **User Authentication** – Sign in to access your personalized travel information.
+- **User Profile** – Manage your account details and travel preferences.
+- **Responsive Design** – Access the application from desktop, tablet, and mobile devices.
 
 ---
 
-## 🚀 How It Works
+## 🛠️ Tech Stack
 
-The basic workflow of TravelEase is:
+| Technology | Purpose |
+|---|---|
+| React 19 | Frontend development |
+| TypeScript | Type safety |
+| Vite | Development and build tool |
+| Tailwind CSS 4 | Styling |
+| TanStack Router | Application routing |
+| TanStack Query | Data fetching and state management |
+| Supabase | Backend services |
+| Mapbox GL | Interactive maps |
+| Framer Motion | Animations |
+| Lucide React | Icons |
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to run the project on your local machine.
+
+### Prerequisites
+
+Make sure you have installed:
+
+- [Node.js](https://nodejs.org/)
+- npm
+- Git
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/ShreyasSwasti/travel-guide-app.git
+```
+
+### 2. Navigate to the Project
+
+```bash
+cd travel-guide-app
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the Development Server
+
+```bash
+npm run dev
+```
+
+### 5. Open in Browser
+
+Open the local URL displayed in your terminal (usually):
 
 ```text
-Enter Destination
-        ↓
-Select Travel Dates
-        ↓
-Enter Number of Travellers
-        ↓
-Set Travel Budget
-        ↓
-Generate AI Itinerary
-        ↓
-View & Manage Trip
+http://localhost:5173
 ```
 
 ---
 
-## 🖥️ Application Sections
+## 📜 Available Commands
 
-| Section     | Purpose                                |
-| ----------- | -------------------------------------- |
-| 🏠 Home     | Main travel planning interface         |
-| ✈️ Plan     | Create a new travel itinerary          |
-| 🗺️ Map     | Explore destinations and locations     |
-| 🧳 My Trips | View saved trips and itineraries       |
-| 👤 Profile  | Manage preferences and account details |
-
----
-
-## 🛠️ Technology
-
-The application was developed using **Lovable**, an AI-assisted application development platform.
-
-The project follows a modern web-application approach with an interactive frontend and AI-powered travel-planning functionality.
-
-> **Note:** The exact underlying technology stack may depend on the generated Lovable project configuration.
+| Command | Description |
+|---|---|
+| `npm run dev` | Start the development server |
+| `npm run build` | Build the project |
+| `npm run build:dev` | Create a development build |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Check code quality |
+| `npm run format` | Format project files |
 
 ---
 
-## 🎯 Project Objectives
+## 🎯 Project Goals
 
-The main objectives of TravelEase are:
+The main goal of TravelEase is to make travel planning easier by bringing important trip details into one place.
 
-1. Simplify the travel planning process.
-2. Reduce the time required to create an itinerary.
-3. Provide personalized travel plans based on user requirements.
-4. Organize trip information in one place.
-5. Provide an easy-to-use and responsive interface.
-6. Help users manage their planned and saved trips.
+Some of the things this project aims to achieve:
 
----
-
-## 📸 Application Preview
-
-### Home / Trip Planner
-
-The home page provides the main trip-planning interface where users enter their destination, dates, travellers, and budget.
-
-### AI Itinerary
-
-The application generates a personalized itinerary based on the information provided by the user.
-
-### My Trips
-
-Users can access their saved travel plans from the My Trips section.
-
-### Map
-
-The map section allows users to explore locations associated with their travel plans.
-
----
-
-## 🌐 Live Application
-
-Try TravelEase here:
-
-**https://itinerary-master-app.lovable.app**
+- Make trip planning easier for everyone.
+- Help users organize their travel schedules.
+- Generate travel plans based on individual budgets.
+- Provide an easy way to explore destinations.
+- Keep saved trips organized and accessible.
 
 ---
 
 ## 🔮 Future Improvements
 
-Possible future enhancements include:
+Some features that could be added in future updates:
 
-* 🌦️ Real-time weather information
-* 🏨 Hotel recommendations
-* ✈️ Flight recommendations
-* 🍽️ Restaurant recommendations
-* 💱 Real-time currency conversion
-* 🚗 Transportation planning
-* 📍 Real-time location tracking
-* 💰 Detailed expense tracking
-* 📄 Export itinerary as PDF
-* 🌍 Multi-language support
-* 🔔 Travel reminders and notifications
-* 🤝 Collaborative trip planning
+- Weather information for selected destinations.
+- Hotel and flight recommendations.
+- Restaurant suggestions.
+- Travel expense tracking.
+- Downloadable PDF itineraries.
+- Multi-language support.
+- Travel reminders and notifications.
+- Collaborative trip planning.
 
 ---
 
-## 👨‍💻 Project
+## 🤝 Contributions
 
-**Project Name:** TravelEase — AI Travel Planner
+Suggestions, bug reports, and contributions are welcome!
 
-**Category:** Travel & Tourism / Artificial Intelligence
+If you find a bug or have an idea to improve the project, feel free to open an issue or submit a pull request.
 
-**Platform:** Web Application
-
-**Development Platform:** Lovable
-
-**Live Demo:** https://itinerary-master-app.lovable.app
----
-
-## 📄 License
-
-This project is developed for educational and project demonstration purposes.
+1. Fork the repository.
